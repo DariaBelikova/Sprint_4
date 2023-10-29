@@ -3,6 +3,8 @@ package edu.praktikum.sprint4;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -11,12 +13,18 @@ import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 
-  //1
+@RunWith(Parameterized.class) //1
 public class AnswersTest {
 
     private WebDriver webDriver;
+    private String answer;  //1
+    private int index;    //1
 
+    public AnswersTest(String answer, int index) {
 
+        this.answer = answer;
+        this.index = index;
+    }
     @Before
     public void setUp() {
         ChromeOptions options = new ChromeOptions();
@@ -26,7 +34,22 @@ public class AnswersTest {
         webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
     }
+      @Parameterized.Parameters
+      public static Object[][] getTestData() {
+          return new Object[][] {
+                  {"Сутки — 400 рублей. Оплата курьеру — наличными или картой.", 0},
+          };}
 
+          @Test
+          public void checkFirstButton(){
+              MainPage mainPage = new MainPage(webDriver);
+
+              mainPage.open();
+              QuestionsOfImportant baseButtonBlock = new QuestionsOfImportant(webDriver, index);
+              baseButtonBlock.clickButton();
+              assertEquals(answer, baseButtonBlock.getAnswer());
+          }
+/*
 @Test
     public void checkFirstButton(){
         MainPage mainPage = new MainPage(webDriver);
@@ -110,7 +133,7 @@ public class AnswersTest {
         QuestionsOfImportant baseButtonBlock = new QuestionsOfImportant(webDriver, 7);
         baseButtonBlock.clickButton();
         assertEquals("Да, обязательно. Всем самокатов! И Москве, и Московской области.",baseButtonBlock.getAnswer());
-    }
+    }*/
 
     @After
 
