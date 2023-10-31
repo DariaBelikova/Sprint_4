@@ -13,12 +13,12 @@ import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 
-@RunWith(Parameterized.class) //1
+@RunWith(Parameterized.class)
 public class AnswersTest {
 
     private WebDriver webDriver;
-    private String answer;  //1
-    private int index;    //1
+    private String answer;
+    private int index;
 
     public AnswersTest(String answer, int index) {
 
@@ -52,6 +52,7 @@ public class AnswersTest {
                   {"Да, пока самокат не привезли. Штрафа не будет, объяснительной записки тоже не попросим. Все же свои.", 6},
 
                   {"Да, обязательно. Всем самокатов! И Москве, и Московской области.", 7},
+
           };}
 
           @Test
@@ -63,7 +64,6 @@ public class AnswersTest {
               baseButtonBlock.clickButton();
               assertEquals(answer, baseButtonBlock.getAnswer());
 
-              System.out.println(answer);
           }
 /*
 @Test
