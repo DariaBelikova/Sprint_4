@@ -32,13 +32,6 @@
             <artifactId>selenium-chrome-driver</artifactId>
             <version>4.14.1</version>
         </dependency>
-        <dependency>
-            <groupId>com.tngtech.java</groupId>
-            <artifactId>junit-dataprovider</artifactId>
-            <version>1.13.1</version>
-            <scope>test</scope>
-        </dependency>
-
     </dependencies>
 
 </project>
